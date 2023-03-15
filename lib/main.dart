@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 a2 = double.parse(_cona2.text);
 
                 res1 = p1 / a1;
-                res2 = a2 / p2;
+                res2 = p2 / a2;
 
                 debugPrint('debug res1: $res1');
                 debugPrint('debug res2: $res2');
@@ -200,7 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ],
     ),
     )
-            ),
+    ),
 
     floatingActionButton: FloatingActionButton(
         onPressed: _calculate,
