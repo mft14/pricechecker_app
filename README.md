@@ -1,16 +1,9 @@
 # pricecheck
 
-A new Flutter project.
+Just my first app with Flutter.
+Trying things out.
+This app compares two prices, for example when you are in the supermarket
 
-## Getting Started
+The plan to extend this app is adding a start page and adding more similar tools like this.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
