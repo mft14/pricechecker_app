@@ -34,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     String regex = "[0-9.]";
     String _output = "How much do you want to save today?";
+    String _saving = "";
     final TextEditingController _conp1 = TextEditingController();
     final TextEditingController _conp2 = TextEditingController();
     final TextEditingController _cona1 = TextEditingController();
@@ -42,11 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
     double p2 = 0;
     double a1 = 0;
     double a2 = 0;
-    double _counter = 0;
-
-    void _incrementCounter() {
-        setState(() =>_counter++, );
-    }
 
     void _reset() {
         setState(() {
@@ -56,6 +52,18 @@ class _MyHomePageState extends State<MyHomePage> {
             _cona2.text = "";
 
             _output = "How much do you want to save today?"; 
+            _saving = ""; 
+        });
+    }
+
+    void _save(double save) {
+        setState(() {
+            String erg = save.toStringAsFixed(2); 
+            _saving = "You save: $erg€";
+
+            // if (product == 1){ _saving = "You gonna save" "das"; }
+            // if (product == 2){ _saving = "Product 2 is cheaper"; }
+            // if (product == 3){ _saving = ""; }
         });
     }
 
@@ -64,8 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
             
             double res1 = 0;
             double res2 = 0;
+            double resdiff = 0;
 
-            try{
+            try {
                 p1 = double.parse(_conp1.text); //p = price 1 and 2
                 p2 = double.parse(_conp2.text);
                 a1 = double.parse(_cona1.text); //p = amount 1 and 2
@@ -74,12 +83,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 res1 = p1 / a1;
                 res2 = p2 / a2;
 
+                if(res1 > res2) { resdiff = res1 - res2; }
+                if(res1 < res2) { resdiff = res2 - res1; }
+                _save(resdiff); //method for checking the difference
+
                 debugPrint('debug res1: $res1');
                 debugPrint('debug res2: $res2');
+                debugPrint('resdiff: $resdiff');
 
-                if (res1 < res2) { _output = "Product 1 is cheaper"; }
-                if (res1 == res2) { _output = "Both are equal"; }
-                if (res1 > res2) { _output = "Product 2 is cheaper"; }
+                if (res1 < res2) { _output = "Product 1 is cheaper";}
+                if (res1 > res2) { _output = "Product 2 is cheaper";}
+                if (res1 == res2){ _output = "Both are equal";}
 
             } catch(e) {
 
@@ -172,7 +186,14 @@ class _MyHomePageState extends State<MyHomePage> {
     Padding(
         padding: const EdgeInsets.all(12),
         child: Text(_output), 
-        ),
+    ),
+
+    //Here telling if cheap or not
+    Padding(
+        padding: const EdgeInsets.all(12),
+        child: Text(_saving,
+            style: const TextStyle(color: Colors.green)),
+    ),
 
     Row(
         mainAxisAlignment: MainAxisAlignment.center,
